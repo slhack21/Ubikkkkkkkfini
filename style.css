@@ -1,0 +1,462 @@
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Thème Bleu Sombre */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #0a192f; /* Bleu très sombre (Nouveau) */
+    color: #ccd6f6; /* Texte clair (Nouveau) */
+    overflow-x: hidden; /* Empêche le défilement horizontal lors de l'animation */
+    transition: margin-left 0.3s ease; /* Ajoute une transition douce pour le contenu principal */
+}
+
+header {
+    background-color: #001e3c; /* Bleu nuit un peu plus clair (Nouveau) */
+    color: #e0f2f7; /* Texte très clair (Nouveau) */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixe l'en-tête en haut */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Assure que l'en-tête est au-dessus */
+    border-bottom: 1px solid #133b5f; /* Bordure subtile (Nouveau) */
+    transition: margin-left 0.3s ease, width 0.3s ease; /* Added width transition */
+}
+
+header h1 {
+    font-size: 1.5rem;
+    color: #64ffda; /* Couleur accent (Nouveau) */
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+}
+
+.header-button {
+    background: none;
+    border: none;
+    color: #e0f2f7; /* Texte très clair (Nouveau) */
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+}
+.header-button:hover {
+    color: #64ffda;
+}
+
+#menu-toggle {
+    /* Inherits from .header-button */
+}
+#logout-button {
+    /* Inherits from .header-button */
+    font-size: 1.3rem; /* Slightly smaller */
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Commence caché à gauche */
+    width: 250px;
+    height: 100%;
+    background-color: #112a45; /* Bleu sombre pour sidebar (Nouveau) */
+    padding-top: 60px; /* Espace pour l'en-tête fixe */
+    transition: left 0.3s ease;
+    z-index: 999; /* Sous l'en-tête mais au-dessus du contenu */
+    border-right: 1px solid #133b5f; /* Bordure subtile (Nouveau) */
+}
+
+#sidebar.active {
+    left: 0; /* Glisse vers la droite pour devenir visible */
+}
+
+#sidebar ul {
+    list-style: none;
+}
+
+#sidebar ul li a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: #a8b2d1; /* Couleur texte liens sidebar (Nouveau) */
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#sidebar ul li a:hover {
+    background-color: #1a3f66; /* Hover plus clair (Nouveau) */
+    color: #64ffda; /* Couleur accent au hover (Nouveau) */
+}
+
+main {
+    padding: 80px 2rem 2rem; /* Espace pour l'en-tête fixe + padding normal */
+    transition: margin-left 0.3s ease; /* Transition pour le décalage */
+}
+
+/* Classe pour décaler le contenu principal lorsque la sidebar est active */
+body.sidebar-active main {
+    margin-left: 250px;
+}
+body.sidebar-active header {
+     margin-left: 250px; /* Décale aussi l'header*/
+     width: calc(100% - 250px); /* Ajuste la largeur de l'header */
+}
+
+.mod-section h2 {
+    margin-bottom: 1.5rem;
+    color: #ccd6f6; /* Texte clair (Nouveau) */
+    text-align: center;
+    font-size: 2rem;
+    border-bottom: 1px solid #133b5f; /* Ligne sous le titre (Nouveau) */
+    padding-bottom: 0.5rem;
+}
+
+.mod-card {
+    background-color: #112a45; /* Fond carte bleu sombre (Nouveau) */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre adaptée (Nouveau) */
+    border: 1px solid #1a3f66; /* Bordure carte (Nouveau) */
+}
+
+.mod-card h3 {
+    color: #64ffda; /* Couleur accent (Nouveau) */
+    margin-bottom: 0.5rem;
+}
+
+.mod-card p {
+    color: #a8b2d1; /* Texte carte (Nouveau) */
+    margin-bottom: 1rem;
+}
+
+.download-button {
+    position: relative; /* Needed for progress bar positioning */
+    overflow: hidden; /* Hide overflowing progress bar */
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    background-color: #64ffda; /* Couleur accent (Nouveau) */
+    color: #0a192f; /* Texte bouton contrasté (Nouveau) */
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease;
+    border: 1px solid #64ffda; /* Bordure bouton (Nouveau) */
+    cursor: pointer;
+    min-width: 200px; /* Ensure minimum width */
+    justify-content: center; /* Center content */
+    text-align: center;
+}
+
+.download-button span { /* Target the text span */
+    z-index: 2; /* Ensure text is above progress bar */
+    position: relative;
+}
+.download-button i {
+    margin-right: 0.5rem;
+    z-index: 2;
+    position: relative;
+}
+
+.download-button:hover:not(:disabled) {
+    background-color: transparent; /* Fond transparent au hover (Nouveau) */
+    color: #64ffda; /* Texte couleur accent au hover (Nouveau) */
+}
+
+.download-button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+.download-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.download-button .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0; /* Start with 0 width */
+    background-color: rgba(10, 150, 130, 0.5); /* Semi-transparent accent color */
+    transition: width 0.1s linear; /* Smooth progress animation */
+    z-index: 1; /* Below text and icon */
+}
+
+.download-button.downloading {
+    cursor: progress; /* Indicate activity */
+    background-color: #1a3f66; /* Slightly different background */
+    color: #64ffda; /* Accent color text */
+    border-color: #1a3f66;
+}
+
+.download-button.downloading .progress-bar {
+    transition: width 2s ease-out; /* Slower, smoother transition */
+}
+
+.download-button.downloading span,
+.download-button.downloading i {
+    color: #0a192f; /* Keep text dark while bar fills */
+}
+
+.download-button.success {
+    background-color: #10806f; /* A slightly greener success color */
+    border-color: #10806f;
+    color: #e0f2f7; /* Clear success text */
+    cursor: default; /* Indicate no further action */
+}
+
+.download-button.success .progress-bar {
+     width: 100% !important; /* Ensure bar stays full */
+     background-color: rgba(16, 128, 111, 0.6); /* Match success color */
+}
+
+.download-button.success span {
+    color: #e0f2f7; /* Ensure text is light on success background */
+}
+
+.download-button.success i {
+    display: none; /* Hide download icon on success */
+}
+
+/* Section Contact */
+.contact-section {
+    background-color: #112a45; /* Fond similaire aux cartes */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem; /* Espace au-dessus */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #1a3f66;
+    text-align: center;
+}
+
+.contact-section h2 {
+    color: #ccd6f6;
+    margin-bottom: 1rem;
+    border-bottom: none; /* Pas de ligne sous ce titre */
+    padding-bottom: 0;
+}
+
+.contact-section p {
+    color: #a8b2d1;
+    margin-bottom: 0.5rem;
+}
+
+.contact-section a {
+    color: #64ffda; /* Couleur accent pour le lien email */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-section a:hover {
+    color: #a8b2d1; /* Couleur texte normal au hover */
+    text-decoration: underline;
+}
+
+/* Styles pour le Modal de Connexion */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    z-index: 1050; /* Au-dessus de tout sauf le modal */
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0a192f; /* Fond du modal */
+    border: 1px solid #1a3f66; /* Bordure du modal */
+    border-radius: 8px;
+    padding: 1.5rem; /* Reduced padding slightly */
+    width: 90%;
+    max-width: 380px; /* Largeur maximale */
+    z-index: 1060; /* Au-dessus de l'overlay */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: #ccd6f6; /* Couleur texte par défaut */
+    max-height: 90vh; /* Limit max height */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.modal h2 {
+    color: #64ffda; /* Couleur accent */
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: none; /* Pas de bordure pour ce titre */
+    padding-bottom: 0;
+    font-size: 1.5rem; /* Slightly smaller title */
+}
+
+.modal p {
+    color: #a8b2d1; /* Texte secondaire */
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+#login-view > p,
+#register-view > p {
+    margin-bottom: 1rem; /* Reduced margin */
+}
+
+.form-group {
+    margin-bottom: 0.8rem; /* Reduced margin */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem; /* Reduced margin */
+    color: #ccd6f6;
+    font-weight: bold;
+    font-size: 0.9rem; /* Slightly smaller label */
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="text"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 0.7rem; /* Reduced padding */
+    background-color: #112a45; /* Fond champ */
+    border: 1px solid #1a3f66; /* Bordure champ */
+    border-radius: 4px;
+    color: #ccd6f6; /* Couleur texte champ */
+    font-size: 0.9rem; /* Slightly smaller font */
+}
+
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="text"]:focus,
+.form-group input[type="tel"]:focus {
+    outline: none;
+    border-color: #64ffda; /* Bordure focus accent */
+    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.3); /* Ombre focus légère */
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 0.7rem; /* Reduced padding */
+    background-color: #64ffda; /* Couleur accent */
+    color: #0a192f; /* Texte bouton */
+    border: none;
+    border-radius: 5px;
+    font-size: 0.95rem; /* Slightly smaller font */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin-top: 1rem; /* Reduced margin */
+}
+
+.submit-button:hover {
+    background-color: #1a3f66; /* Hover plus sombre */
+    color: #64ffda; /* Texte hover accent */
+}
+
+.close-button {
+    position: absolute;
+    top: 8px; /* Adjusted */
+    right: 12px; /* Adjusted */
+    background: none;
+    border: none;
+    font-size: 1.6rem; /* Slightly smaller */
+    color: #a8b2d1;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-button:hover {
+    color: #64ffda; /* Accent au hover */
+}
+
+.modal-footer {
+    margin-top: 0.8rem; /* Reduced margin */
+    margin-bottom: 0.3rem; /* Reduced margin */
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.modal-footer + .modal-footer {
+    margin-top: 0.1rem; /* Reduced margin */
+}
+
+.modal-footer a {
+    color: #64ffda;
+    text-decoration: none;
+}
+
+.modal-footer a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none !important; /* Use important to override potential conflicts */
+}
+
+/* Responsive (optionnel mais recommandé) */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+    header h1 {
+        font-size: 1.3rem;
+    }
+     .header-button {
+        font-size: 1.3rem;
+        padding: 0.4rem;
+    }
+    #logout-button {
+         font-size: 1.1rem;
+    }
+    main {
+        padding: 70px 1rem 1rem;
+    }
+     body.sidebar-active main {
+        margin-left: 0; /* Ne décale pas le contenu sur mobile */
+    }
+     body.sidebar-active header {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    /* Sur mobile, la sidebar peut recouvrir le contenu */
+    #sidebar {
+         width: 200px;
+         left: -200px;
+    }
+     #sidebar.active {
+        left: 0;
+    }
+    /* Make modal slightly smaller on mobile */
+    .modal {
+        max-width: 320px; /* Further reduced max-width */
+        padding: 1.2rem;
+    }
+     .modal h2 {
+        font-size: 1.4rem;
+    }
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group input[type="text"],
+    .form-group input[type="tel"] {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+     .submit-button {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}

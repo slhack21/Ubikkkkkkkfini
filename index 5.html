@@ -1,0 +1,130 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump Escape Studio - Mods</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Jump Escape Studio</h1>
+        <div class="header-controls">
+            <button id="logout-button" class="header-button hidden" aria-label="Se déconnecter">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <button id="menu-toggle" class="header-button" aria-label="Ouvrir le menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav id="sidebar">
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Mods</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="mod-section">
+            <h2>Mods pour Jump Escape VR</h2>
+            <div class="mod-card">
+                <h3>QuestCam</h3>
+                <p>Améliorez votre expérience de streaming et d'enregistrement avec QuestCam. Affiche une vue à la troisième personne personnalisable pour vos spectateurs.</p>
+                <button class="download-button" data-mod-name="QuestCam" data-download-url="#">
+                    <i class="fas fa-download"></i> <span>Télécharger QuestCam</span>
+                    <div class="progress-bar"></div>
+                </button>
+            </div>
+
+            <div class="mod-card">
+                <h3>Custom Skin</h3>
+                <p>Personnalisez l'apparence de votre personnage en jeu avec des skins uniques. Exprimez votre style !</p>
+                <button class="download-button" data-mod-name="Custom Skin" data-download-url="#">
+                    <i class="fas fa-download"></i> <span>Télécharger Custom Skin</span>
+                    <div class="progress-bar"></div>
+                </button>
+            </div>
+
+            <div class="mod-card">
+                <h3>Double Jump</h3>
+                <p>Ajoute la capacité d'effectuer un deuxième saut en l'air. Atteignez de nouveaux sommets et maîtrisez le parkour.</p>
+                <button class="download-button" data-mod-name="Double Jump" data-download-url="#">
+                    <i class="fas fa-download"></i> <span>Télécharger Double Jump</span>
+                    <div class="progress-bar"></div>
+                </button>
+            </div>
+            <!-- D'autres mods peuvent être ajoutés ici -->
+        </section>
+    </main>
+
+    <section class="contact-section">
+        <h2>Contactez-nous</h2>
+        <p>Pour toute question ou demande, envoyez-nous un email à :</p>
+        <p><a href="/cdn-cgi/l/email-protection#81cbf4ecf1afe4f2e2e0f1e4aff2f5f4e5e8eec1e9eef5ece0e8edafe2eeec"><span class="__cf_email__" data-cfemail="3b714e564b155e48585a4b5e15484f4e5f52547b53544f565a525715585456">[email&#160;protected]</span></a></p>
+    </section>
+
+    <!-- Login/Register Modal -->
+    <div id="login-overlay" class="modal-overlay hidden"></div>
+    <div id="login-modal" class="modal hidden">
+        <button id="close-modal" class="close-button">&times;</button>
+        <h2 id="modal-title">Connexion requise</h2>
+
+        <!-- Login View -->
+        <div id="login-view">
+            <p>Veuillez vous connecter pour télécharger le mod.</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-button">Se connecter</button>
+            </form>
+            <p class="modal-footer">Pas encore de compte ? <a href="#" id="show-register-link">S'inscrire</a></p>
+            <p class="modal-footer"><a href="#">Mot de passe oublié ?</a></p>
+        </div>
+
+        <!-- Register View -->
+        <div id="register-view" class="hidden">
+             <p>Créez votre compte pour accéder aux téléchargements.</p>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-prenom">Prénom :</label>
+                    <input type="text" id="register-prenom" name="register-prenom" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-nom">Nom :</label>
+                    <input type="text" id="register-nom" name="register-nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Adresse mail :</label>
+                    <input type="email" id="register-email" name="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Mot de passe :</label>
+                    <input type="password" id="register-password" name="register-password" required>
+                </div>
+                 <div class="form-group">
+                    <label for="register-address">Adresse :</label>
+                    <input type="text" id="register-address" name="register-address">
+                </div>
+                 <div class="form-group">
+                    <label for="register-phone">Numéro de téléphone :</label>
+                    <input type="tel" id="register-phone" name="register-phone">
+                </div>
+                <button type="submit" class="submit-button">S'inscrire</button>
+            </form>
+            <p class="modal-footer">Déjà un compte ? <a href="#" id="show-login-link">Se connecter</a></p>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+</body>
+</html>
